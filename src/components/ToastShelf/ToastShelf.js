@@ -3,7 +3,8 @@ import styles from "./ToastShelf.module.css";
 
 function ToastShelf({ toasts, setToasts }) {
   function handleDismiss(id) {
-    setToasts(toasts.filter((toast) => toast.id !== id));
+    const nextToasts = toasts.filter((toast) => toast.id !== id);
+    setToasts(nextToasts);
   }
 
   return (

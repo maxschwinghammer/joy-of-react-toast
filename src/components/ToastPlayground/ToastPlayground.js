@@ -15,20 +15,21 @@ function ToastPlayground() {
     {
       message: "Test",
       variant: "error",
-      id: Math.random(),
+      id: crypto.randomUUID(),
     },
   ]);
 
   function handleSubmit(event) {
     event.preventDefault();
-    setToasts([
+    const nextToasts = [
       ...toasts,
       {
         message: message,
         variant: variant,
-        id: Math.random(),
+        id: crypto.randomUUID(),
       },
-    ]);
+    ];
+    setToasts(nextToasts);
     setMessage("");
     setVariant("notice");
   }
