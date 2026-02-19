@@ -1,17 +1,17 @@
 import { useEffect } from "react";
 
-export function useEscapeKey(action) {
-  function handleEscape(event) {
-    if (event.code === "Escape") {
-      action();
-    }
-  }
-
+export function useEscapeKey(callback) {
   useEffect(() => {
-    window.addEventListener("keydown", handleEscape);
+    function handleKeyDown(event) {
+      if (event.code === "Escape") {
+        callback();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleEscape);
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  });
+  }, [callback]);
 }
